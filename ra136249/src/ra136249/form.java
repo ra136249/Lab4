@@ -3,6 +3,7 @@ package ra136249;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -59,6 +60,8 @@ public class form extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		// The section below creates the fields to be filled, and the checkbox:
 		
 		textFirstName = new JTextField();
 		textFirstName.setBounds(100, 60, 300, 19);
@@ -129,6 +132,8 @@ public class form extends JFrame {
 		comboTitle.setBounds(58, 12, 81, 24);
 		contentPane.add(comboTitle);
 		
+		// The section below creates the labels of the form filling page:
+				
 		JLabel lblTitle = new JLabel("Title:");
 		lblTitle.setBounds(12, 17, 90, 15);
 		contentPane.add(lblTitle);
@@ -181,40 +186,53 @@ public class form extends JFrame {
 		lblCountry.setBounds(12, 390, 90, 15);
 		contentPane.add(lblCountry);
 		
+		JLabel lblRequired = new JLabel("* = required fields");
+		lblRequired.setFont(new Font("Dialog", Font.BOLD, 10));
+		lblRequired.setBounds(100, 415, 159, 31);
+		contentPane.add(lblRequired);
+		
+		// Creates the "OK" button to be used in error messages
 		final JButton btnError = new JButton("OK");
 		
+		// Creates the "print" button
 		JButton btnPrint = new JButton("Print");
 		btnPrint.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {		
 				//contentPane.setVisible(false);
+				
+				// Verify if First Name was filled
 				if(textFirstName.getText().isEmpty()){
 					JOptionPane.showMessageDialog(btnError, "Error: 'First Name' is a required field");
-					textFirstName.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+					textFirstName.setUI(new JTextFieldHintUI("This field must be filled", Color.red));
 				}
 				
+				// Verify if Last Name was filled
 				else if(textLastName.getText().isEmpty()){
 					JOptionPane.showMessageDialog(btnError, "Error: 'Last Name' is a required field");
-					textLastName.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+					textLastName.setUI(new JTextFieldHintUI("This field must be filled", Color.red));
 				}
 				
+				// Verify if Birth Date was filled
 				else if(textBirthDate.getText().isEmpty()){
 					JOptionPane.showMessageDialog(btnError, "Error: 'Birth Date' is a required field");
-					textBirthDate.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+					textBirthDate.setUI(new JTextFieldHintUI("This field must be filled", Color.red));
 				}
 				
+				// Verify if Birth Date was filled correctly
 				else if(!(textBirthDate.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})"))){
 					JOptionPane.showMessageDialog(btnError, "Error: 'Birth Date' doesn't seem to be OK");
 					textBirthDate.setText("");
 					textBirthDate.setUI(new JTextFieldHintUI("This field must be DD/MM/YYYY", Color.red));
 				}
-								
+				
+				// Verify if Email was filled
 				else if(textEmail.getText().isEmpty()){
 					JOptionPane.showMessageDialog(btnError, "Error: 'Email' is a required field");
-					textEmail.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+					textEmail.setUI(new JTextFieldHintUI("This field must be filled", Color.red));
 				}
 				
-				// Pattern can be found at:
+				// Verify if Email was filled correctly. Pattern can be found at:
 				// http://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-method
 				else if(!(textEmail.getText().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\"
 						+ ".[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"))){
@@ -223,11 +241,27 @@ public class form extends JFrame {
 					textEmail.setUI(new JTextFieldHintUI("Enter a valid email account", Color.red));
 				}
 				
+				// Verify if CPF was filled
 				else if(textCPF.getText().isEmpty()){
 					JOptionPane.showMessageDialog(btnError, "Error: 'CPF' is a required field");
-					textCPF.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+					textCPF.setUI(new JTextFieldHintUI("This field must be filled", Color.red));
 				}
 				
+				// Verify if CPF was filled correctly
+				else if(!(textCPF.getText().matches("([0-9]{3})\\.([0-9]{3})\\.([0-9]{3})-([0-9]{2})"))){
+					JOptionPane.showMessageDialog(btnError, "Error: 'CPF' doesn't seem to be OK");
+					textCPF.setText("");
+					textCPF.setUI(new JTextFieldHintUI("This field must be xxx.xxx.xxx-xx", Color.red));
+				}
+				
+				// If the CEP is not blank, the code must verify if it was correctly filled
+				else if((!(textCEP.getText().isEmpty()))&&(!(textCEP.getText().matches("([0-9]{5})\\-([0-9]{3})")))){
+					JOptionPane.showMessageDialog(btnError, "Error: 'CEP' doesn't seem to be OK");
+					textCEP.setText("");
+					textCEP.setUI(new JTextFieldHintUI("This field must be xxxxx-xxx", Color.red));
+				}
+				
+				// The form is printed if everything is OK
 				else{
 					print printForm = new print();
 					printForm.titleLabel.setText((String) comboTitle.getSelectedItem());

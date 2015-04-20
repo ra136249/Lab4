@@ -7,7 +7,7 @@ import java.awt.event.FocusListener;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 import javax.swing.text.JTextComponent;
 
-// This code was found on the Internet, and it's been used in order to create hints inside the fields.
+// This code was found on the Internet, and it's being used in order to create hints inside the fields.
 // Site: http://blogs.sequoiainc.com/blogs/java-swing-hint-text-on-a-jtextfield
 // Author: Stephen Mouring
 

@@ -57,57 +57,61 @@ public class print extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		// The section below creates the fields where the results go:
+		
 		titleLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
 		titleLabel.setBounds(102, 50, 216, 15);
 		contentPane.add(titleLabel);
 		
 		firstNameLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		firstNameLabel.setBounds(102, 80, 216, 15);
+		firstNameLabel.setBounds(102, 80, 300, 15);
 		contentPane.add(firstNameLabel);		
 		
 		lastNameLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		lastNameLabel.setBounds(102, 110, 216, 15);
+		lastNameLabel.setBounds(102, 110, 300, 15);
 		contentPane.add(lastNameLabel);
 		
 		birthDateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		birthDateLabel.setBounds(102, 140, 216, 15);
+		birthDateLabel.setBounds(102, 140, 300, 15);
 		contentPane.add(birthDateLabel);
 		
 		emailLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		emailLabel.setBounds(102, 170, 216, 15);
+		emailLabel.setBounds(102, 170, 300, 15);
 		contentPane.add(emailLabel);
 		
 		cpfLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		cpfLabel.setBounds(102, 200, 216, 15);
+		cpfLabel.setBounds(102, 200, 300, 15);
 		contentPane.add(cpfLabel);
 		
 		phoneLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		phoneLabel.setBounds(102, 230, 216, 15);
+		phoneLabel.setBounds(102, 230, 300, 15);
 		contentPane.add(phoneLabel);
 		
 		address1Label.setFont(new Font("Dialog", Font.PLAIN, 12));
-		address1Label.setBounds(102, 260, 216, 15);
+		address1Label.setBounds(102, 260, 300, 15);
 		contentPane.add(address1Label);
 		
 		address2Label.setFont(new Font("Dialog", Font.PLAIN, 12));
-		address2Label.setBounds(102, 290, 216, 15);
+		address2Label.setBounds(102, 290, 300, 15);
 		contentPane.add(address2Label);
 		
 		cepLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		cepLabel.setBounds(102, 320, 216, 15);
+		cepLabel.setBounds(102, 320, 300, 15);
 		contentPane.add(cepLabel);
 		
 		cityLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		cityLabel.setBounds(102, 350, 216, 15);
+		cityLabel.setBounds(102, 350, 300, 15);
 		contentPane.add(cityLabel);
 		
 		stateLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		stateLabel.setBounds(102, 380, 216, 15);
+		stateLabel.setBounds(102, 380, 300, 15);
 		contentPane.add(stateLabel);
 		
 		countryLabel.setFont(new Font("Dialog", Font.PLAIN, 12));
-		countryLabel.setBounds(102, 410, 216, 15);
+		countryLabel.setBounds(102, 410, 300, 15);
 		contentPane.add(countryLabel);
+		
+		// The section below creates the labels of the form results page:
 		
 		JLabel lblFormTitle = new JLabel("Form Printed");
 		lblFormTitle.setFont(new Font("Dialog", Font.BOLD, 20));
