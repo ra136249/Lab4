@@ -1,6 +1,7 @@
 package ra136249;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -47,7 +48,7 @@ public class form extends JFrame {
 			}
 		});
 	}
-
+	
 	/**
 	 * Create the frame.
 	 */
@@ -60,62 +61,65 @@ public class form extends JFrame {
 		contentPane.setLayout(null);
 		
 		textFirstName = new JTextField();
-		textFirstName.setBounds(99, 60, 114, 19);
+		textFirstName.setBounds(100, 60, 300, 19);
 		contentPane.add(textFirstName);
 		textFirstName.setColumns(10);
 		
 		textLastName = new JTextField();
-		textLastName.setBounds(99, 90, 114, 19);
+		textLastName.setBounds(100, 90, 300, 19);
 		contentPane.add(textLastName);
 		textLastName.setColumns(10);
 		
 		textBirthDate = new JTextField();
-		textBirthDate.setBounds(99, 120, 114, 19);
+		textBirthDate.setBounds(100, 120, 300, 19);
 		contentPane.add(textBirthDate);
 		textBirthDate.setColumns(10);
+		textBirthDate.setUI(new JTextFieldHintUI("DD/MM/AAAA", Color.black));
 		
 		textEmail = new JTextField();
-		textEmail.setBounds(99, 150, 114, 19);
+		textEmail.setBounds(100, 150, 300, 19);
 		contentPane.add(textEmail);
 		textEmail.setColumns(10);
 		
 		textCPF = new JTextField();
-		textCPF.setBounds(99, 180, 114, 19);
+		textCPF.setBounds(100, 180, 300, 19);
 		contentPane.add(textCPF);
 		textCPF.setColumns(10);
 		
 		textPhone = new JTextField();
-		textPhone.setBounds(99, 210, 114, 19);
+		textPhone.setBounds(100, 210, 300, 19);
 		contentPane.add(textPhone);
 		textPhone.setColumns(10);
+		textPhone.setUI(new JTextFieldHintUI("Including international country code and DDD", Color.black));
 		
 		textAddress1 = new JTextField();
-		textAddress1.setBounds(99, 240, 114, 19);
+		textAddress1.setBounds(100, 240, 300, 19);
 		contentPane.add(textAddress1);
 		textAddress1.setColumns(10);
 		
 		textAddress2 = new JTextField();
-		textAddress2.setBounds(99, 270, 114, 19);
+		textAddress2.setBounds(100, 270, 300, 19);
 		contentPane.add(textAddress2);
 		textAddress2.setColumns(10);
+		textAddress2.setUI(new JTextFieldHintUI("Apt, floor, suite, etc.", Color.black));
 		
 		textCEP = new JTextField();
-		textCEP.setBounds(99, 300, 114, 19);
+		textCEP.setBounds(100, 300, 300, 19);
 		contentPane.add(textCEP);
 		textCEP.setColumns(10);
 		
 		textCity = new JTextField();
-		textCity.setBounds(99, 330, 114, 19);
+		textCity.setBounds(100, 330, 300, 19);
 		contentPane.add(textCity);
 		textCity.setColumns(10);
 		
 		textState = new JTextField();
-		textState.setBounds(99, 360, 114, 19);
+		textState.setBounds(100, 360, 300, 19);
 		contentPane.add(textState);
 		textState.setColumns(10);
 		
 		textCountry = new JTextField();
-		textCountry.setBounds(99, 390, 114, 19);
+		textCountry.setBounds(100, 390, 300, 19);
 		contentPane.add(textCountry);
 		textCountry.setColumns(10);
 		
@@ -129,23 +133,23 @@ public class form extends JFrame {
 		lblTitle.setBounds(12, 17, 90, 15);
 		contentPane.add(lblTitle);
 		
-		JLabel lblFirstName = new JLabel("First Name:");
+		JLabel lblFirstName = new JLabel("First Name*:");
 		lblFirstName.setBounds(12, 60, 90, 15);
 		contentPane.add(lblFirstName);
 		
-		JLabel lblLastName = new JLabel("Last Name:");
+		JLabel lblLastName = new JLabel("Last Name*:");
 		lblLastName.setBounds(12, 90, 90, 15);
 		contentPane.add(lblLastName);
 				
-		JLabel lblBirthDate = new JLabel("Birth Date:");
+		JLabel lblBirthDate = new JLabel("Birth Date*:");
 		lblBirthDate.setBounds(12, 120, 90, 15);
 		contentPane.add(lblBirthDate);
 		
-		JLabel lblEmail = new JLabel("Email:");
+		JLabel lblEmail = new JLabel("Email*:");
 		lblEmail.setBounds(12, 150, 90, 15);
 		contentPane.add(lblEmail);
 		
-		JLabel lblCPF = new JLabel("CPF:");
+		JLabel lblCPF = new JLabel("CPF*:");
 		lblCPF.setBounds(12, 180, 90, 15);
 		contentPane.add(lblCPF);
 		
@@ -185,23 +189,43 @@ public class form extends JFrame {
 			public void actionPerformed(ActionEvent e) {		
 				//contentPane.setVisible(false);
 				if(textFirstName.getText().isEmpty()){
-					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'First Name' deve ser preenchido");
+					JOptionPane.showMessageDialog(btnError, "Error: 'First Name' is a required field");
+					textFirstName.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
 				}
 				
 				else if(textLastName.getText().isEmpty()){
-					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Last Name' deve ser preenchido");
+					JOptionPane.showMessageDialog(btnError, "Error: 'Last Name' is a required field");
+					textLastName.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
 				}
 				
 				else if(textBirthDate.getText().isEmpty()){
-					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Birth Date' deve ser preenchido");
+					JOptionPane.showMessageDialog(btnError, "Error: 'Birth Date' is a required field");
+					textBirthDate.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
 				}
 				
+				else if(!(textBirthDate.getText().matches("([0-9]{2})/([0-9]{2})/([0-9]{4})"))){
+					JOptionPane.showMessageDialog(btnError, "Error: 'Birth Date' doesn't seem to be OK");
+					textBirthDate.setText("");
+					textBirthDate.setUI(new JTextFieldHintUI("This field must be DD/MM/YYYY", Color.red));
+				}
+								
 				else if(textEmail.getText().isEmpty()){
-					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Email' deve ser preenchido");
+					JOptionPane.showMessageDialog(btnError, "Error: 'Email' is a required field");
+					textEmail.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
+				}
+				
+				// Pattern can be found at:
+				// http://stackoverflow.com/questions/624581/what-is-the-best-java-email-address-validation-method
+				else if(!(textEmail.getText().matches("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\"
+						+ ".[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"))){
+					JOptionPane.showMessageDialog(btnError, "Error: 'Email' doesn't seem to be OK");
+					textEmail.setText("");
+					textEmail.setUI(new JTextFieldHintUI("Enter a valid email account", Color.red));
 				}
 				
 				else if(textCPF.getText().isEmpty()){
-					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'CPF' deve ser preenchido");
+					JOptionPane.showMessageDialog(btnError, "Error: 'CPF' is a required field");
+					textCPF.setUI(new JTextFieldHintUI("This field must be completed", Color.red));
 				}
 				
 				else{
