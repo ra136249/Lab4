@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -176,27 +177,52 @@ public class form extends JFrame {
 		lblCountry.setBounds(12, 390, 90, 15);
 		contentPane.add(lblCountry);
 		
+		final JButton btnError = new JButton("OK");
+		
 		JButton btnPrint = new JButton("Print");
 		btnPrint.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {		
 				//contentPane.setVisible(false);
-				print printForm = new print();
-				printForm.titleLabel.setText((String) comboTitle.getSelectedItem());
-				printForm.firstNameLabel.setText(textFirstName.getText());
-				printForm.lastNameLabel.setText(textLastName.getText());
-				printForm.birthDateLabel.setText(textBirthDate.getText());
-				printForm.emailLabel.setText(textEmail.getText());
-				printForm.cpfLabel.setText(textCPF.getText());
-				printForm.phoneLabel.setText(textPhone.getText());
-				printForm.address1Label.setText(textAddress1.getText());
-				printForm.address2Label.setText(textAddress2.getText());
-				printForm.cepLabel.setText(textCEP.getText());
-				printForm.cityLabel.setText(textCity.getText());
-				printForm.stateLabel.setText(textState.getText());
-				printForm.countryLabel.setText(textCountry.getText());
-				//printForm.contentPane.setVisible(true);				
-				printForm.show();	
+				if(textFirstName.getText().isEmpty()){
+					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'First Name' deve ser preenchido");
+				}
+				
+				else if(textLastName.getText().isEmpty()){
+					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Last Name' deve ser preenchido");
+				}
+				
+				else if(textBirthDate.getText().isEmpty()){
+					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Birth Date' deve ser preenchido");
+				}
+				
+				else if(textEmail.getText().isEmpty()){
+					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'Email' deve ser preenchido");
+				}
+				
+				else if(textCPF.getText().isEmpty()){
+					JOptionPane.showMessageDialog(btnError, "Erro: o campo 'CPF' deve ser preenchido");
+				}
+				
+				else{
+					print printForm = new print();
+					printForm.titleLabel.setText((String) comboTitle.getSelectedItem());
+					printForm.firstNameLabel.setText(textFirstName.getText());
+					printForm.lastNameLabel.setText(textLastName.getText());
+					printForm.birthDateLabel.setText(textBirthDate.getText());
+					printForm.emailLabel.setText(textEmail.getText());
+					printForm.cpfLabel.setText(textCPF.getText());
+					printForm.phoneLabel.setText(textPhone.getText());
+					printForm.address1Label.setText(textAddress1.getText());
+					printForm.address2Label.setText(textAddress2.getText());
+					printForm.cepLabel.setText(textCEP.getText());
+					printForm.cityLabel.setText(textCity.getText());
+					printForm.stateLabel.setText(textState.getText());
+					printForm.countryLabel.setText(textCountry.getText());
+					//printForm.contentPane.setVisible(true);				
+					printForm.show();
+				}
+				
 			}
 		});
 		btnPrint.setBounds(12, 420, 74, 25);
